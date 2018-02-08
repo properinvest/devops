@@ -13,7 +13,7 @@ zone=$(curl -sH 'Metadata-Flavor: Google' 'http://metadata/computeMetadata/v1/in
 
 hostname_short=$(hostname --short)
 
-orig_dir=$(pwd)
+orig_dir=/tmp
 
 cd ${backup_dir}
 
@@ -46,5 +46,5 @@ su postgres -c "echo 'CHECKPOINT;' | psql"
 # Create the actual snapshots
 sync
 /sbin/fsfreeze -f /local
-${cmd} "local-${hostname_short}" --zone "${zone}" --snapshot-names "local-${hostname_short}--${datestr}"
+${cmd} "local-${hostname_short}"  --zone "${zone}" --snapshot-names "local-${hostname_short}--${datestr}"
 /sbin/fsfreeze -u /local
