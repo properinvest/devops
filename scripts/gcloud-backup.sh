@@ -17,7 +17,7 @@ orig_dir=/tmp
 
 cd ${backup_dir}
 
-mkdir -p /local/backup/db
+#mkdir -p /local/backup/db
 
 # Backup Postgres
 pgfile="${backup_dir}/db/postgres--${datestr}.sql"
@@ -45,6 +45,6 @@ su postgres -c "echo 'CHECKPOINT;' | psql"
 
 # Create the actual snapshots
 sync
-/sbin/fsfreeze -f /local
+#/sbin/fsfreeze -f /local
 ${cmd} "local-${hostname_short}"  --zone "${zone}" --snapshot-names "local-${hostname_short}--${datestr}"
-/sbin/fsfreeze -u /local
+#/sbin/fsfreeze -u /local
